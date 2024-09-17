@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
-@RequestMapping("teachers")
+@RequestMapping("/teachers")
 public class TeacherController {
 
     private final TeacherService teacherService;
@@ -24,9 +25,9 @@ public class TeacherController {
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<Teacher>> getTeachers() {
+    public ResponseEntity<List<TeacherDto>> getTeachers() {
         /*Dit compiled niet, want we gebruiken in de controller geen repository*/
-        return ResponseEntity.ok(repository.findAll());
+        return ResponseEntity.ok(teacherService.getAllTeachers());
     }
 
     @GetMapping("/{id}")
